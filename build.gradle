@@ -1,0 +1,66 @@
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+apply from: 'gradle/scripts/dependencies.gradle'
+apply from: 'gradle/scripts/integration.gradle'
+apply from: 'gradle/scripts/artifacts.gradle'
+apply from: 'gradle/scripts/optional.gradle'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://files.minecraftforge.net/maven" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'org.ajoberstar:gradle-git:0.10.1'
+    }
+}
+
+
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+version = "${project.minecraft_version}-${project.v_major}.${project.v_minor}.${project.v_micro}${project.v_patch}"
+group = project.group_id
+archivesBaseName = project.mod_id
+
+minecraft {
+    useDepAts = true
+    version = "${project.minecraft_version}-${project.forge_version}"
+    mappings = project.mappings
+    runDir = "run"
+    replace "@VERSION@", project.version
+    replace "@MCVERSION@", project.minecraft_version
+    replace "@FORGEVERSION@", project.forge_version
+    replace "@MAJOR@", project.v_major
+    replace "@MINOR@", project.v_minor
+    replace "@MICRO@", project.v_micro
+    replace "@PATCH@", project.v_patch
+
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+
+
+processResources
+        {
+            // this will ensure that this task is redone when the versions change.
+            inputs.property "version", project.version
+            inputs.property "mcversion", project.minecraft.version
+
+            // replace stuff in mcmod.info, nothing else
+            from(sourceSets.main.resources.srcDirs) {
+                include 'mcmod.info'
+
+                // replace version and mcversion
+                expand 'version': project.version, 'mcversion': project.minecraft.version
+            }
+
+            // copy everything else, thats not the mcmod.info
+            from(sourceSets.main.resources.srcDirs) {
+                exclude 'mcmod.info'
+            }
+        }

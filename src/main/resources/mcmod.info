@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "templatecraft",
+    "name": "TemplateCraft",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "mysticdrew"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

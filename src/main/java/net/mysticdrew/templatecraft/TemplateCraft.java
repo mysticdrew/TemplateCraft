@@ -3,8 +3,10 @@ package net.mysticdrew.templatecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.mysticdrew.templatecraft.common.CommonProxy;
+import net.mysticdrew.templatecraft.common.blocks.Blocks;
+import net.mysticdrew.templatecraft.common.items.Items;
 import net.mysticdrew.templatecraft.common.reference.Reference;
 
 
@@ -18,15 +20,9 @@ public class TemplateCraft
     public static CommonProxy proxy;
 
     @EventHandler
-    public void init(FMLInitializationEvent event)
+    public void init(FMLPreInitializationEvent event)
     {
-//        System.out.println("test1");
-//        List<String> list = new ArrayList();
-//        for (int i = 0; i < 20; i++) {
-//            list.add("Value: " + i);
-//        }
-//
-//        list.forEach(System.out::println);
-        //System.out.println("DIRT BLOCK >> "+Blocks.DIRT.getUnlocalizedName());
+        Blocks.init();
+        Items.init();
     }
 }

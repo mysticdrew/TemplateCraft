@@ -1,7 +1,7 @@
 package net.mysticdrew.templatecraft.common.util;
 
 import net.minecraftforge.fml.common.FMLLog;
-import net.mysticdrew.templatecraft.common.reference.Constants;
+import net.mysticdrew.templatecraft.common.reference.Reference;
 import org.apache.logging.log4j.Level;
 
 /**
